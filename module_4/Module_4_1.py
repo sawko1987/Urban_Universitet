@@ -1,6 +1,6 @@
-from fake_math import divide as fm
+from Tutorial.module_4.fake_math import divide as fm
 from true_math import divide as tm
-import Hello as hl
+from Tutorial.module_4 import Hello as hl
 from paket import add, subtract
 from paket.paket_2.file_1 import area as circle_area
 from paket.paket_2.file_2 import area as rectangle_area
