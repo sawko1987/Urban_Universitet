@@ -21,7 +21,7 @@ class House:
         return f"Название: {self.name} Этажей:{self.number_of_floors}"
     def __eq__(self, other):
         if isinstance(self.number_of_floors, int):
-            return int(self.number_of_floors) == int(other.number_of_floors)
+            return self.number_of_floors == other.number_of_floors
     def __lt__(self, other):
         if isinstance(self.number_of_floors, int):
             return self.number_of_floors < other.number_of_floors
@@ -30,26 +30,47 @@ class House:
             return self.number_of_floors <= other.number_of_floors
     def __gt__(self, other):
         if isinstance(self.number_of_floors, int):
-            return int(self.number_of_floors) > int(other.number_of_floors)
+            return self.number_of_floors > other.number_of_floors
     def __ge__(self, other):
         if isinstance(self.number_of_floors, int):
             return self.number_of_floors >= other.number_of_floors
     def __ne__(self, other):
         if isinstance(self.number_of_floors, int):
-            return self.number_of_floors != other.number_of_floors
+             return self.number_of_floors != other.number_of_floors
     def __add__(self, other):
-        if isinstance(self.number_of_floors, int):
-            return int(self.number_of_floors) + int(other)
+        if isinstance(other, House):
+            self.number_of_floors = self.number_of_floors + other.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = self.number_of_floors + other
+            return self
+        else:
+            print(f"""Полученное значение {other} не является целым числом или объектом House. 
+          Увеличить количество этажей не представляется возможным""")
+            return self
     def __radd__(self, other):
-        if isinstance(self.number_of_floors,int):
-            return int(self.number_of_floors) + int(other)
+        if isinstance(other, House):
+            self.number_of_floors = self.number_of_floors + other.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = self.number_of_floors + other
+            return self
+        else:
+            print(f"""Полученное значение {other} не является целым числом или объектом House. 
+          Увеличить количество этажей не представляется возможным""")
+            return self
 
     def __iadd__(self, other):
-            if isinstance(self.number_of_floors, int):
-                return int(self.number_of_floors) + int(other)
-
-
-
+        if isinstance(other, House):
+            self.number_of_floors = self.number_of_floors + other.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = self.number_of_floors + other
+            return self
+        else:
+            print(f"""Полученное значение {other} не является целым числом или объектом House. 
+          Увеличить количество этажей не представляется возможным""")
+            return self
 
 
 
