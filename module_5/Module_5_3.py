@@ -95,16 +95,11 @@ print(h1 > h2) # __gt__
 print(h1 >= h2) # __ge__
 print(h1 < h2) # __lt__
 print(h2 < h3)
-
 print(h1 <= h2) # __le__
 print(h1 != h2) # __ne__
-
 print(len(h2))
 h2.go_to(10)
 print (str(h2))
-
-
-
 print(len(h3))
 h3.go_to(15)
 print (str(h3))
