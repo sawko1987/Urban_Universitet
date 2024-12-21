@@ -16,7 +16,7 @@ class User:
 
 
     def get_info(self): #возвращаем nickname и password
-        return self.nickname,self.password
+        return self.nickname,hash(self.password)
 
 
 class Video:
@@ -35,27 +35,27 @@ class Video:
 
 
 class UrTube:
-    def __init__(self):
-        users = []
-        videos = []
-        current_user = None
+    users = []
+    videos = []
+    def __init__(self, current_user = None):
+        self.current_user = current_user
 
     def log_in (self, login, password):
-        for user in users:
+        for user in self.users:
             if login and hash(password) == User.get_info():
-                current_user = user
-                return users
+                self.current_user = self.user
+                return self.users
 
-    def rigister(self,nickname, password,age):
+    def register(self,nickname, password,age):
         new_users = User(nickname, password, age)
         if new_users not in self.users:
-            users.append(new_users)
-            current_user = new_users
+            self.users.append(new_users)
+            self.current_user = new_users
         else:
             print ( "Пользователь уже существует")
 
     def log_out(self):
-        current_user = None
+        self.current_user = None
 
     def add(self, *videos):
         for video in videos:
@@ -70,7 +70,7 @@ class UrTube:
                 return titles
 
     def watch_video(self, title):
-        if current_user == None:
+        if self.current_user is None:
             print("Войдите в аккаунт")
             return
 
