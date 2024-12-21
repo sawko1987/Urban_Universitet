@@ -1,30 +1,23 @@
-
-password = "12Aa123$33%3"
-if len(password) <= 8:
-    print("Количество символов должно быть минимум 8")
-elif  (not "@" in password) or (not "$" in password) or (not "%" in password):
-    print("В пароле отсутсвуют спец символы")
-elif not ("0" or "1" or "2" or "3" or "4" or"5" or "6" or "7" or "8" or "9") in password:
-    print("Введите хотя бы одну цифру")
+def get_smm(list_):
+    print(f"Min = {min(list_)}, max = {max(list_)}")
+    
 
 
 
+a = (input())
+b = (list(a))
 
-    # k = []
-    # if i == str("!") or i ==str("@") or i==str("%") or i==str("?") or i==str("-"):
-    #     k.append(i)
-    # if not k:
-    #     print("не верный пароль")
-    # else:
-    #     if
-    #
-    #
-    # elif:
-    #     if i.isupper():
-    #         print("Пароль успешно принят")
-    #         continue
-    #
-    #     continue
-    # else:
-    #     print("не корректный пароль")
-    #
+get_smm(b)
+
+
+
+
+# test #1
+# input: 8 11 5 -10 12 0
+# output: Min = -10, max = 12, sum = 26
+# test #2
+# input: 1 2 3 -5 -4 0 3 7
+# output: Min = -5, max = 7, sum = 7
+# test #3
+# input: 1
+# output: Min = 1, max = 1, sum = 1
