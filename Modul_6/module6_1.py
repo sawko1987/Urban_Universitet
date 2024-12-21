@@ -1,40 +1,37 @@
 class Animal:
     alive = True
     fed = False
-    name = None
+    def __init__(self,name):
+        self.name= name
 
-
+    def eat(self,food):
+        self.Plant.name = food
+        if not food == Plant.edible:
+            print(f"{self.name} съел {food.n})
+            self.fed = True
 
 
 class Plant:
    edible = False
-   name = None
+   def __init__(self,name):
+       self.name = name
+
 
 
 
 class Mammal(Animal):
-    def eat(self,food):
-        self.food = food
-        if self.food != Plant.edible:
-            print(f"{self.name} съел {food.name}")
-            Animal.fed = True
-        else:
-            print(f"{self.name} не стал есть {food.name}")
-            Animal.alive = False
+    pass
 
 
 class Predator(Animal):
-    def __init__(self, eat):
-        self.eat = eat
+    pass
 
 
 class Flower(Plant):
-    def __init__(self, eat):
-        self.eat = eat
-
+    pass
 
 class Fruit(Plant):
-    edible = True
+    pass
 
 
 
