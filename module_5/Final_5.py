@@ -1,17 +1,15 @@
 import time
 class User:
-    password = []
     def __init__(self, nickname, password, age):
         self.nickname = nickname
         self.password = hash(password)
-        password.append(hash(password))
         self.age = int(age)
 
-    def __str__(self):  # Возвращаем nickname
+    def __str__(self):
         return self.nickname
 
     def __eq__(self, other):
-        if isinstance(other, User): # проверяем является ли обект экземпляром класса User
+        if isinstance(other, User):
             return self.nickname
 
 
@@ -20,11 +18,11 @@ class User:
 
 
 class Video:
+    time_now = 0
     def __init__(self,title, duration, adult_mode = False):
 
         self.title = title
         self.duration = duration
-        time_now = 0
         self.adult_mode = adult_mode
 
     def __str__(self):
@@ -42,9 +40,10 @@ class UrTube:
 
     def log_in (self, login, password):
         for user in self.users:
-            if login and hash(password) == User.get_info():
-                self.current_user = self.user
-                return self.users
+            if login  == User.get_info():
+                if hash(password) == User.get_info():
+                    self.current_user = user
+                    return user
 
     def register(self,nickname, password,age):
         new_users = User(nickname, password, age)
