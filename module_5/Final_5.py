@@ -19,7 +19,7 @@ class User:
 
 class Video:
     def __init__(self,title, duration, adult_mode = False):
-        time_now = 0
+        self.time_now = 0
         self.title = title
         self.duration = duration
         self.adult_mode = adult_mode
@@ -32,11 +32,10 @@ class Video:
 
 
 class UrTube:
-      def __init__(self):
-          self.current_user = None
-          self.users = []
-          self.videos = []
-
+    def __init__(self):
+        self.videos = []
+        self.users = []
+        self.current_user = None
 
     def log_in (self, login, password):
         for user in self.users:
@@ -51,22 +50,22 @@ class UrTube:
             self.users.append(new_users)
             self.current_user = new_users
         else:
-            print ( "Пользователь уже существует")
+            print ( f"Пользователь {nickname} уже существует")
 
     def log_out(self):
         self.current_user = None
 
-    def add(self, *videos):
+    def add(self, *videos:Video):
         for video in videos:
             if not video in videos:
                 videos.append(video)
 
     def get_videos(self, search ):
         titles = []
-        for video in titles:
-            if search.lower() in titles.lower():
+        for video in self.videos:
+            if search.lower() in str(video).lower():
                 titles.append(video)
-                return titles
+        return titles
 
     def watch_video(self, title):
         if self.current_user is None:
@@ -74,8 +73,8 @@ class UrTube:
             return
 
         for video in self.videos:
-            if video.title.lower() == title.lower():
-                if Video.adult_mode == True and User.age >= 18:
+            if title.lower() == video.title.lower():
+                if video.adult_mode == True and self.current_user.age >= 18:
                     while video.time_now < video.duration:
                         video.time_now = video.time_now + 1
                         print(video.time_now)
