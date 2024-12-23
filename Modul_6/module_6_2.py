@@ -38,12 +38,11 @@ class Vehicle:
 #Метод set_color - принимает аргумент new_color(str), меняет цвет __color на new_color, если он есть в списке __COLOR_VARIANTS, в противном случае выводит на экран надпись: "Нельзя сменить цвет на <новый цвет>".
 #Взаимосвязь методов и скрытых атрибутов:
     def set_color(self, new_color = str(None)):
-        for color in self.__COLOR_VARIANTS:
-            if new_color.lower() in color.lower():
-                self.__color = color
-                print(f"Цвет автомобиля изменился на {new_color} ")
-            else:
-                print(f"Нельзя сменить цвет {self.__color} на {new_color}")
+        if new_color.lower() in self.__COLOR_VARIANTS:
+            self.__color = new_color
+            print(f"Цвет автомобиля изменился на {new_color} ")
+        else:
+            print(f"Нельзя сменить цвет {self.__color} на {new_color}")
 
 
 #Sedan(седан) - наследник класса Vehicle.
