@@ -19,9 +19,9 @@ class Animal:
     # Если переданное растение (food) не съедобное - выводит на экран "<self.name> не стал есть <food.name>", меняется атрибут alive на False.
     # Т.е если животному дать съедобное растение, то животное насытится, если не съедобное - погибнет.
 
-    def eat(self,food):
-        self.food = Plant.edible
-        if not self.food == Plant.edible:
+
+    def eat(self, food):
+        if food.edible:
             print(f"{self.name} съел {food.name}")
             self.fed = True
         else:
