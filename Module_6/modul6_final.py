@@ -1,6 +1,6 @@
 import math
 class Figure:
-    def __init__(self,__color,__sides,filled = True,sides_count = 0 ):   #__sides - список сторон  __color(список цветов)
+    def __init__(self,__color,*__sides:tuple, filled = True,sides_count = 0 ):   #__sides - список сторон  __color(список цветов)
         self.__sides = __sides
         self.__color = __color
         self.filled = filled
@@ -30,7 +30,7 @@ class Figure:
             else:
                 return False
 
-    def _get_sides(self): # Метод get_sides должен возвращать значение я атрибута __sides.
+    def get_sides(self): # Метод get_sides должен возвращать значение я атрибута __sides.
         return self.__sides
 
 
@@ -73,7 +73,7 @@ class Triangle(Figure):
 # Переопределить __sides сделав список из 12 одинаковы сторон (передаётся 1 сторона)
 class Cube(Figure):
 
-    def __init__(self, __color, __sides, filled=True, sides_count=12):  # __sides - список сторон  __color(список цветов)
+    def __init__(self, __color, *__sides, filled=True, sides_count=12):  # __sides - список сторон  __color(список цветов)
         self.__sides = __sides
         self.__color = __color
         self.filled = filled
@@ -105,7 +105,7 @@ class Cube(Figure):
 
         # Метод get_sides должен возвращать значение я атрибута __sides.
 
-    def _get_sides(self):
+    def get_sides(self):
         return self.__sides
 
     def __len__(self):  # Метод __len__ должен возвращать периметр фигуры.

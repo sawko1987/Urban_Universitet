@@ -12,7 +12,7 @@ def file_select():
 window = tk.Tk()
 window.title ("Проводник")
 window.iconbitmap(default = "icon50.png")
-window.geometry("450x350")
+window.geometry("450x350-100+100")
 window.configure(bg="black")
 window.resizable(False, False)  #запрещаем менять размер
 text = tk.Label(window, text = "файл", height = 5, width = 65, background = "silver", )
