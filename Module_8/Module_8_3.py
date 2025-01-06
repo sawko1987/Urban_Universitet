@@ -6,15 +6,13 @@ class Car:
         self.__is_valid_numbers(__numbers)
 
 
-
     def __is_valid_vin(self, vin_number):
         if not isinstance (vin_number, int):
             raise IncorrectVinNumber ('Некорректный тип vin номер')
         elif 1000000>vin_number<9999999:
-            raise IncorrectVinNumber ('Неверная длина номера')
+            raise IncorrectVinNumber ('Неверная длина номера Vin-кода')
         else:
             return True
-
 
     def  __is_valid_numbers(self, numbers):
         if isinstance (numbers, str) and len(numbers) == 6:
