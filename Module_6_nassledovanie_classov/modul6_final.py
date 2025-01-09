@@ -1,13 +1,15 @@
 import math
 class Figure:
-    def __init__(self,__color,*__sides:tuple, filled = True,sides_count = 0 ):   #__sides - список сторон  __color(список цветов)
+    sides_count = 0
+
+    def __init__(self,__color:list,*__sides:list, filled = True, ):   #__sides - список сторон  __color(список цветов)
         self.__sides = __sides
         self.__color = __color
         self.filled = filled
-        self.sides_count = sides_count
+
 
     def get_color(self):    # Метод get_color, возвращает список RGB цветов.
-        return list(self.__color)
+       return list(self.__color)
 
 # Метод __is_valid_color - служебный, принимает параметры r, g, b, который проверяет корректность переданных значений перед установкой  нового цвета.
 # Корректным цвет: все значения r, g и b - целые числа в диапазоне от 0 до 255 (включительно).
@@ -16,11 +18,15 @@ class Figure:
             self.r = r
             self.g = g
             self.b = b
-        return (r,g,b)
+        return r,g,b
 #  предварительно проверив их на корректность. Если введены некорректные данные, то цвет остаётся прежним.
     
     def set_color(self,r, g, b):
-        pass
+        if self.__is_valid_color:
+            return f"Цвет изменится"
+        else:
+            return f"Цвет останется прежним"
+
 # Метод __is_valid_sides - служебный, принимает неограниченное кол-во сторон, возвращает True если все стороны целые положительные числа
 #  и кол-во новых сторон совпадает с текущим, False - во всех остальных случаях.
     def __is_valid_sides (self, *__sides):
@@ -35,15 +41,14 @@ class Figure:
 
 
     def __len__(self):       # Метод __len__ должен возвращать периметр фигуры.
-        perimeter = 0
-        perimeter += self.__sides
-        return perimeter
+       return sum(self.get_sides())
 
-# Метод set_sides(self, *new_sides) должен принимать новые стороны, если их количество не равно sides_count, то не изменять, в противном случае - менять.
-    def set_sides(self,__sides):
-        if self.len(self.__sides) != len(__sides):
-            __sides = self.__sides
-        return self.__sides
+# Метод set_sides(self, *new_sides) должен принимать новые стороны, если их количество не равно sides_count,
+    # то не изменять, в противном случае - менять.
+    def set_sides(self,*new_sides):
+        if self.sides_count != new_sides:
+            self.sides_count = new_sides
+        return self.sides_count
 
 # Атрибуты класса Circle: sides_count = 1
 # Каждый объект класса Circle должен обладать следующими атрибутами и методами:
@@ -110,7 +115,7 @@ class Cube(Figure):
 
     def __len__(self):  # Метод __len__ должен возвращать периметр фигуры.
         perimeter = 0
-        perimeter += self.__sides
+        perimeter += self.get_sides
         return perimeter
 
         # Метод set_sides(self, *new_sides) должен принимать новые стороны, если их количество не равно sides_count, то не изменять, в противном случае - менять.
@@ -130,37 +135,35 @@ class Cube(Figure):
 
 
 Circle((200, 200, 100), 10, 15, 6) #, т.к. сторона у круга всего 1, то его стороны будут - [1]
+
 #
-Triangle((200, 200, 100), 10, 6)  #т.к. сторон у треугольника 3, то его стороны будут - [1, 1, 1]
+# Triangle((200, 200, 100), 10, 6)  #т.к. сторон у треугольника 3, то его стороны будут - [1, 1, 1]
 Cube((200, 200, 100), 9)   #  , т.к. сторон(рёбер) у куба - 12, то его стороны будут - [9, 9, 9, ....., 9] (12)
-#
+# #
 Cube((200, 200, 100), 9, 12) #, т.к. сторон(рёбер) у куба - 12, то его стороны будут - [1, 1, 1, ....., 1]
-# Код для проверки:
-#
+# # Код для проверки:
+# #
 circle1 = Circle((200, 200, 100), 10) # (Цвет, стороны)
-#
+
+
+
 cube1 = Cube((222, 35, 130), 6)
-##
+
 #Проверка на изменение цветов:
 # #
-# # circle1.set_color(55, 66, 77) # Изменится
+circle1.set_color(55, 66, 77) # Изменится
+print(circle1.get_color())
 # #
-# # print(circle1.get_color())
-# #
-# # cube1.set_color(300, 70, 15) # Не изменится
-# #
-# # print(cube1.get_color())
+cube1.set_color(300, 70, 15) # Не изменится
+print(cube1.get_color())
 # # #
 # # Проверка на изменение сторон:
-# #
 cube1.set_sides(5, 3, 12, 4, 5) # Не изменится
-# #
 print(cube1.get_sides())
 # #
-# # circle1.set_sides(15) # Изменится
-# #
-# # print(circle1.get_sides())
+circle1.set_sides(15) # Изменится
+print(circle1.get_sides())
 
 print(len(circle1)) # Проверка периметра (круга), это и есть длина:
 print(cube1.get_volume()) # Проверка объёма (куба):
-
+#
