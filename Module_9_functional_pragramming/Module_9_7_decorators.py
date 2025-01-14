@@ -10,7 +10,6 @@ def is_prime(func):
             if result_sum % sum == 0:
                 return "Число является составным"
         return result_sum
-
     return wrapper
 
 
