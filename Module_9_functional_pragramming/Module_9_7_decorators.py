@@ -2,7 +2,7 @@ def is_prime(func):
     """Функция декоратор (is_prime), которая распечатывает "Простое", если результат 1ой функции будет простым числом и
     "Составное" в противном случае."""
     def wrapper(*args,**kwargs):
-        result_sum = func()
+        result_sum = func(*args,**kwargs)
         if result_sum % 2 == 0 or result_sum % 3==0 or result_sum % 5==0 or result_sum % 7==0:
             return "Число составное"
         else:
