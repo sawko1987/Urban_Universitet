@@ -10,7 +10,7 @@ def wite_words(word_count, file_name):
     """
     with open(file_name, "w") as file:
         for f in range(word_count):
-            file.write (f"{f}\n")
+            file.write (f"Какое то слово №{f}\n")
             time.sleep(0.1)
         print(threading.current_thread())
     print (f"завершена запись в {file_name}")
