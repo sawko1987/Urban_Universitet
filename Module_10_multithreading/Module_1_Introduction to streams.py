@@ -8,7 +8,7 @@ def wite_words(word_count, file_name):
     Функция должна вести запись слов "Какое-то слово № <номер слова по порядку>" в соответствующий файл с прерыванием
      после записи каждого на 0.1 секунду.
     """
-    with open(file_name, "w") as file:
+    with open(file_name, "w", encoding='utf-8') as file:
         for f in range(word_count):
             file.write (f"Какое то слово №{f}\n")
             time.sleep(0.1)
@@ -24,10 +24,10 @@ stop_time1 = time.time()
 lead_time1 = stop_time1 - start_time1
 print(f"Время выполнения основного потока составило: {lead_time1}")
 
-thread5 = threading.Thread(target=wite_words,args=(10,"example5"))
-thread6 = threading.Thread(target=wite_words,args=(30,"example6"))
-thread7 = threading.Thread(target=wite_words,args=(200,"example7"))
-thread8 = threading.Thread(target=wite_words,args=(100,"example8"))
+thread5 = threading.Thread(target=wite_words,args=(10,"example5.txt"))
+thread6 = threading.Thread(target=wite_words,args=(30,"example6.txt"))
+thread7 = threading.Thread(target=wite_words,args=(200,"example7.txt"))
+thread8 = threading.Thread(target=wite_words,args=(100,"example8.txt"))
 
 thread5.start()
 thread6.start()
