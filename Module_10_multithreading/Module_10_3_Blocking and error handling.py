@@ -7,9 +7,8 @@ class Bank(threading.Thread):
 
 
     def __init__(self):
+        super().__init__()
         self.balance = 0
-        self.lock = lock.locked()
-
 
     def deposit(self):
         """ Будет совершать 100 транзакций пополнения средств.
@@ -17,14 +16,14 @@ class Bank(threading.Thread):
         После увеличения баланса должна выводится строка "Пополнение: <случайное число>. Баланс: <текущий баланс>".
         Также после всех операций поставьте ожидание в 0.001 секунды, тем самым имитируя скорость выполнения пополнения.
         """
-        generate_number = random.randint(50, 500)
-        count = 0
-        while count < 100 and self.balance >= 500 and lock.locked():
-            lock.release()
-            self.balance += generate_number
-            count += 1
-            print(f"Пополнение {generate_number}. Баланс после пополнения {self.balance} ")
-            time.sleep(0.001)
+
+        for _ in range(100):
+            generate_number = random.randint(50, 500)
+            with lock:
+                self.balance += generate_number
+                print(f"Пополнение {generate_number}. Баланс после пополнения {self.balance} ")
+                if self.balance >= 500 and lock.locked():
+                    time.sleep(0.001)
 
     def take(self):
         """
@@ -35,17 +34,17 @@ class Bank(threading.Thread):
         Если случайное число оказалось больше баланса, то вывести строку "Запрос отклонён, недостаточно средств" и заблокировать поток
         методом acquiere.
         """
-        generate_take = random.randint(50, 500)
-        count_take = 0
-        while count_take < 100:
-            print(f"Запрос на {generate_take}")
-            if generate_take <= self.balance:
-                self.balance -= generate_take
-                print(f"Снять: {generate_take}. Баланс после снятия: {self.balance}")
-                count_take += 1
-            else:
-                print("Недостаточно средств")
-                self.lock = lock.acquire()
+        for _ in range(100):
+            generate_take = random.randint(50, 500)
+            with lock:
+                print(f"Запрос на {generate_take}")
+                if generate_take >= self.balance:
+                    print("Недостаточно средств")
+                else:
+                    self.balance -= generate_take
+                    print(f"Снять: {generate_take}. Баланс после снятия: {self.balance}")
+                    time.sleep(1)
+
 
 
 
