@@ -45,15 +45,10 @@ class Bank(threading.Thread):
                     print(f"Снять: {generate_take}. Баланс после снятия: {self.balance}")
                     time.sleep(1)
 
-
-
-
-
 bk = Bank()
 
 th1 = threading.Thread(target=Bank.deposit, args=(bk,))
 th2 = threading.Thread(target=Bank.take, args=(bk,))
-
 
 
 th1.start()
