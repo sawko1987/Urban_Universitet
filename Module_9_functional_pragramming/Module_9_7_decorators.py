@@ -4,12 +4,12 @@ def is_prime(func):
     "Составное" в противном случае."""
     def wrapper(*args,**kwargs):
         result_sum = func(*args,**kwargs)
-        if result_sum < 2:
-            return result_sum
+        if result_sum <= 1 :
+            return f"{result_sum} - составное"
         for sum in range(2, math.isqrt(result_sum) + 1):
             if result_sum % sum == 0:
-                return "Число является составным"
-        return result_sum
+                return f"{result_sum}Число является составным"
+        return f"{result_sum} - Простое"
     return wrapper
 
 
